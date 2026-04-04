@@ -1,5 +1,6 @@
 # =========================================================
-# The Daily Brief — Single-Column, Paragraph Summaries
+# The Daily Brief — Single-Column, Paragraph Summaries 
+
 # =========================================================
 # - Centered title banner (Helvetica), right-aligned date
 # - Sections rendered as 1–2 paragraph summaries (no bullets)
