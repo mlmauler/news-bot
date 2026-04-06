@@ -1210,3 +1210,6 @@ if __name__ == "__main__":
         print(f"[FATAL] {type(e).__name__}: {e}")
         traceback.print_exc()
         sys.exit(1)
+
+send_email(pdf_filename)
+
