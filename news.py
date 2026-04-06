@@ -341,6 +341,41 @@ def fetch_travel_warnings(max_items: int = 200):
 
     return []
 
+import os
+import base64
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
+
+def send_email(pdf_path):
+print("Sending email via SendGrid...")
+
+```
+message = Mail(
+    from_email='your_email@example.com',
+    to_emails='your_email@example.com',
+    subject='Your Daily Brief',
+    html_content='<strong>Your daily newspaper is attached.</strong>'
+)
+
+with open(pdf_path, 'rb') as f:
+    data = f.read()
+    encoded = base64.b64encode(data).decode()
+
+attachment = Attachment(
+    FileContent(encoded),
+    FileName(os.path.basename(pdf_path)),
+    FileType('application/pdf'),
+    Disposition('attachment')
+)
+
+message.attachment = attachment
+
+sg = SendGridAPIClient(os.environ['SENDGRID_API_KEY'])
+
+response = sg.send(message)
+print("EMAIL STATUS:", response.status_code)
+print("EMAIL BODY:", response.body)
+```
 
 
 # ---- Terrorism via GDELT ----
